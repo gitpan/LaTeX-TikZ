@@ -1,0 +1,51 @@
+--- #YAML:1.0
+name:               LaTeX-TikZ
+version:            0.01
+abstract:           Perl object model for generating PGF/TikZ code.
+author:
+    - Vincent Pit <perl@profvince.com>
+license:            perl
+distribution_type:  module
+configure_requires:
+    ExtUtils::MakeMaker:  0
+build_requires:
+    Any::Moose:           0
+    Carp:                 0
+    constant:             0
+    ExtUtils::MakeMaker:  0
+    List::Util:           0
+    Math::Complex:        0
+    Math::Trig:           0
+    Mouse:                0.63
+    Scalar::Util:         0
+    Scope::Guard:         0
+    Sub::Name:            0
+    Task::Weaken:         0
+    Test::More:           0
+requires:
+    Any::Moose:     0
+    Carp:           0
+    constant:       0
+    List::Util:     0
+    Math::Complex:  0
+    Math::Trig:     0
+    Mouse:          0.63
+    perl:           5.006
+    Scalar::Util:   0
+    Scope::Guard:   0
+    Sub::Name:      0
+    Task::Weaken:   0
+resources:
+    bugtracker:  http://rt.cpan.org/NoAuth/ReportBug.html?Queue=LaTeX-TikZ
+    homepage:    http://search.cpan.org/dist/LaTeX-TikZ/
+    license:     http://dev.perl.org/licenses/
+    repository:  http://git.profvince.com/?p=perl%2Fmodules%2FLaTeX-TikZ.git
+no_index:
+    directory:
+        - t
+        - inc
+generated_by:       ExtUtils::MakeMaker version 6.56
+meta-spec:
+    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
+    version:  1.4
+dynamic_config:     0

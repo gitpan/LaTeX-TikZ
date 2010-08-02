@@ -5,15 +5,15 @@ use warnings;
 
 =head1 NAME
 
-LaTeX::TikZ::Tools - Miscellanous tools for LaTeX::TikZ classes.
+LaTeX::TikZ::Tools - Miscellaneous tools for LaTeX::TikZ classes.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Any::Moose 'Util::TypeConstraints' => [ 'find_type_constraint' ];
 

@@ -9,11 +9,11 @@ LaTeX::TikZ::Mod::Width - A modifier that sets the line width.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use LaTeX::TikZ::Interface;
 
@@ -23,7 +23,7 @@ use Any::Moose;
 
 =head1 RELATIONSHIPS
 
-This class consumes the L<LaTeX::TikZ::Mod> role, and as such implements the L</tag>, L</cover>, L</declare> and L</apply> methods.
+This class consumes the L<LaTeX::TikZ::Mod> role, and as such implements the L</tag>, L</covers>, L</declare> and L</apply> methods.
 
 =cut
 
@@ -49,11 +49,11 @@ has 'width' => (
 
 sub tag { ref $_[0] }
 
-=head2 C<cover>
+=head2 C<covers>
 
 =cut
 
-sub cover { LaTeX::TikZ::Tools::numeq($_[0]->width, $_[1]->width) }
+sub covers { LaTeX::TikZ::Tools::numeq($_[0]->width, $_[1]->width) }
 
 =head2 C<declare>
 

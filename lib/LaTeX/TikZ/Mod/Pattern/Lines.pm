@@ -9,11 +9,11 @@ LaTeX::TikZ::Mod::Pattern::Lines - An hatched pattern modifier.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Sub::Name ();
 
@@ -24,7 +24,7 @@ use Any::Moose 'Util::TypeConstraints';
 
 =head1 RELATIONSHIPS
 
-This class inherits the L<LaTeX::TikZ::Mod::Pattern> class and its L</tag>, L</cover>, L<LaTeX::TikZ::Mod::Pattern/declare> and L<LaTeX::TikZ::Mod::Pattern/apply> methods.
+This class inherits the L<LaTeX::TikZ::Mod::Pattern> class and its L</tag>, L</covers>, L<LaTeX::TikZ::Mod::Pattern/declare> and L<LaTeX::TikZ::Mod::Pattern/apply> methods.
 
 =cut
 
@@ -63,7 +63,7 @@ has 'line_width' => (
 has 'space_width' => (
  is      => 'ro',
  isa     => subtype('Num' => where { LaTeX::TikZ::Tools::numcmp($_, 0) >= 0 }),
- default => 1,
+ default => 10,
 );
 
 my $W = Sub::Name::subname('WIDTH' => sub { sprintf '#WIDTH=%0.1f#', @_ });
@@ -147,11 +147,11 @@ around 'BUILDARGS' => sub {
 
 sub tag { join '/', ref $_[0], $_[0]->direction }
 
-=head2 C<cover>
+=head2 C<covers>
 
 =cut
 
-sub cover {
+sub covers {
  my ($this, $other) = @_;
 
  LaTeX::TikZ::Tools::numeq($this->line_width, $other->line_width) or return 0;

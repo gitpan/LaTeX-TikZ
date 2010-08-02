@@ -9,11 +9,11 @@ LaTeX::TikZ::Set::Circle - A set object representing a circle.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use LaTeX::TikZ::Set::Point;
 

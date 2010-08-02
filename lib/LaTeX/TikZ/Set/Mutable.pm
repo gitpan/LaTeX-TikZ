@@ -9,7 +9,7 @@ LaTeX::TikZ::Set::Mutable - A role for set objects that can be appended to.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =head1 DESCRIPTION
 
@@ -18,7 +18,7 @@ This forces them to implement an C<add> method describing how more elements can 
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Any::Moose 'Role';
 

@@ -1,4 +1,4 @@
-use 5.006;
+use 5.008;
 
 use strict;
 use warnings;
@@ -51,7 +51,7 @@ WriteMakefile(
  ABSTRACT_FROM    => $file,
  PL_FILES         => {},
  PREREQ_PM        => \%PREREQ_PM,
- MIN_PERL_VERSION => 5.006,
+ MIN_PERL_VERSION => 5.008,
  META_MERGE       => \%META,
  dist             => {
   PREOP    => "pod2text $file > \$(DISTVNAME)/README",

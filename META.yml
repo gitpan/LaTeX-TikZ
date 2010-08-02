@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               LaTeX-TikZ
-version:            0.01
+version:            0.02
 abstract:           Perl object model for generating PGF/TikZ code.
 author:
     - Vincent Pit <perl@profvince.com>
@@ -30,7 +30,7 @@ requires:
     Math::Complex:  0
     Math::Trig:     0
     Mouse:          0.63
-    perl:           5.006
+    perl:           5.008
     Scalar::Util:   0
     Scope::Guard:   0
     Sub::Name:      0

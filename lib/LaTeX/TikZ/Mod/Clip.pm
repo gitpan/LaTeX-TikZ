@@ -9,11 +9,11 @@ LaTeX::TikZ::Mod::Clip - A modifier that clips sequences with a path.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Sub::Name ();
 
@@ -29,7 +29,7 @@ use Any::Moose;
 
 =head1 RELATIONSHIPS
 
-This class consumes the L<LaTeX::TikZ::Mod> role, and as such implements the L</tag>, L</cover>, L</declare> and L</apply> methods.
+This class consumes the L<LaTeX::TikZ::Mod> role, and as such implements the L</tag>, L</covers>, L</declare> and L</apply> methods.
 
 =cut
 
@@ -63,7 +63,7 @@ my $default_formatter = LaTeX::TikZ::Formatter->new(
 
 sub tag { ref $_[0] }
 
-=head2 C<cover>
+=head2 C<covers>
 
 =cut
 
@@ -140,7 +140,7 @@ my @handlers = (
  [ 'LaTeX::TikZ::Set::Circle'    => $cover_circle    ],
 );
 
-sub cover {
+sub covers {
  my ($old, $new) = map $_->clip, @_[0, 1];
 
  for (@handlers) {

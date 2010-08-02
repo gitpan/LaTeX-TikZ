@@ -9,11 +9,11 @@ LaTeX::TikZ::Interface - LaTeX::TikZ public interface register and loader.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Sub::Name ();
 

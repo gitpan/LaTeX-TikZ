@@ -9,18 +9,18 @@ LaTeX::TikZ::Set::Path - A set object representing a path.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use LaTeX::TikZ::Interface;
 use LaTeX::TikZ::Functor;
 
+use LaTeX::TikZ::Tools;
+
 use Any::Moose;
-use Any::Moose 'Util::TypeConstraints'
-               => [ qw/subtype as where find_type_constraint/ ];
 
 =head1 RELATIONSHIPS
 
@@ -41,13 +41,9 @@ The L<LaTeX::TikZ::Set::Op> objects that from the path.
 
 =cut
 
-subtype 'LaTeX::TikZ::Set::Path::Elements'
-     => as 'Object'
-     => where { $_->does('LaTeX::TikZ::Set::Op') };
-
 has '_ops' => (
  is       => 'ro',
- isa      => 'Maybe[ArrayRef[LaTeX::TikZ::Set::Path::Elements]]',
+ isa      => 'Maybe[ArrayRef[LaTeX::TikZ::Set::Op]]',
  init_arg => 'ops',
  default  => sub { [ ] },
 );
@@ -60,12 +56,12 @@ sub ops { @{$_[0]->_ops} }
 
 =cut
 
-my $ltspe_tc = find_type_constraint('LaTeX::TikZ::Set::Path::Elements');
+my $ltso_tc = LaTeX::TikZ::Tools::type_constraint('LaTeX::TikZ::Set::Op');
 
 sub add {
  my $set = shift;
 
- $ltspe_tc->assert_valid($_) for @_;
+ $ltso_tc->assert_valid($_) for @_;
 
  push @{$set->_ops}, @_;
 

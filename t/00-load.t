@@ -3,14 +3,15 @@
 use strict;
 use warnings;
 
-use Test::More tests => 33;
+use Test::More tests => 34;
 
 BEGIN {
  use_ok( 'LaTeX::TikZ' );
  use_ok( 'LaTeX::TikZ::Formatter' );
  use_ok( 'LaTeX::TikZ::Functor' );
+ use_ok( 'LaTeX::TikZ::Functor::Rule' );
  use_ok( 'LaTeX::TikZ::Interface' );
- use_ok(' LaTeX::TikZ::Meta::TypeConstraint::Autocoerce' );
+ use_ok( 'LaTeX::TikZ::Meta::TypeConstraint::Autocoerce' );
  use_ok( 'LaTeX::TikZ::Mod' );
  use_ok( 'LaTeX::TikZ::Mod::Clip' );
  use_ok( 'LaTeX::TikZ::Mod::Color' );

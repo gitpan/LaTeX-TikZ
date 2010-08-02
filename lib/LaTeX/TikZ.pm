@@ -9,11 +9,11 @@ LaTeX::TikZ - Perl object model for generating PGF/TikZ code.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 SYNOPSIS
 
@@ -21,7 +21,7 @@ our $VERSION = '0.01';
 
     # A couple of lines
     my $hline = Tikz->line(-1 => 1);
-    my $vline = Tikz->line([ 0, -1 ] => [ 0, -1 ]);
+    my $vline = Tikz->line([ 0, -1 ] => [ 0, 1 ]);
 
     # Paint them in red
     $_->mod(Tikz->color('red')) for $hline, $vline;
@@ -39,7 +39,7 @@ our $VERSION = '0.01';
     $octo->mod(Tikz->pattern(class => 'Dots'));
 
     # Create a formatter object
-    my $tikz = Tikz->formatter;
+    my $tikz = Tikz->formatter(scale => 5);
 
     # Put those objects all together and print them
     my $seq = Tikz->seq($octo, $hline, $vline);
@@ -48,12 +48,12 @@ our $VERSION = '0.01';
 
 =head1 DESCRIPTION
 
-This module provides an object model for TikZ, a graphical tookit for LaTeX.
+This module provides an object model for TikZ, a graphical toolkit for LaTeX.
 It allows you to build structures representing geometrical figures, apply a wide set of modifiers on them, transform them globally with functors, and print them in the context of an existing TeX document.
 
 =head1 CONCEPTS
 
-Traditionnaly, in TikZ, there are two ways of grouping elements, or I<ops>, together :
+Traditionally, in TikZ, there are two ways of grouping elements, or I<ops>, together :
 
 =over 4
 
@@ -72,7 +72,7 @@ or as a I<path>, where elements are all drawn as one line :
 
 =back
 
-This distinction is important because there are some primitves that only apply to paths but not to sequences, and vice versa.
+This distinction is important because there are some primitives that only apply to paths but not to sequences, and vice versa.
 
 Figures are made of ops, path or sequence I<sets> assembled together in a tree.
 
@@ -146,7 +146,7 @@ If C<$point> is a L<Math::Complex> object, the L<LaTeX::TikZ::Point::Math::Compl
 
 =back
 
-You can define automatic coercions from your user point types to L<LaTeX::TikZ::Point> by writing your own L<LaTeX::TikZ::Point::My::User::Point> class.
+You can define automatic coercions from your user point types to L<LaTeX::TikZ::Point> by writing your own C<LaTeX::TikZ::Point::My::User::Point> class.
 See L<LaTeX::TikZ::Meta::TypeConstraint::Autocoerce> for the rationale and L<LaTeX::TikZ::Point::Math::Complex> for an example.
 
 =head3 C<< Tikz->line($from => $to) >>
@@ -169,7 +169,7 @@ Creates a L<LaTeX::TikZ::Set::Polyline> object that links the successive element
 
 =head3 C<< Tikz->closed_polyline(@points) >>
 
-Creates a L<LaTeX::TikZ::Set::Polyline> object that cycles through successive eleemnts of C<@points>.
+Creates a L<LaTeX::TikZ::Set::Polyline> object that cycles through successive elements of C<@points>.
 
     my $diamond = Tikz->closed_polyline(
      Tikz->point(0, 1),
@@ -300,7 +300,7 @@ Creates a L<LaTeX::TikZ::Formatter> object that can render a L<LaTeX::TikZ::Set>
 =head3 C<< Tikz->functor(@rules) >>
 
 Creates a L<LaTeX::TikZ::Functor> anonymous subroutine that can be called against L<LaTeX::TikZ::Set> trees to clone them according to the given rules.
-C<@rules> should be made of array references whose first element is the class/role to match against and the second the handler to run.
+C<@rules> should be a list of array references whose first element is the class/role to match against and the second the handler to execute.
 
     # The default is a clone method
     my $clone = Tikz->functor;
@@ -325,7 +325,7 @@ C<@rules> should be made of array references whose first element is the class/ro
 
     # A mod stripper
     my $strip = Tikz->functor(
-     'LaTeX::TikZ::Mod' => sub { return },
+     '+LaTeX::TikZ::Mod' => sub { return },
     );
     my $naked = $set->$strip;
 

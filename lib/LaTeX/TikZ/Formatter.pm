@@ -9,11 +9,11 @@ LaTeX::TikZ::Formatter - LaTeX::TikZ formatter object.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 DESCRIPTION
 
@@ -36,6 +36,11 @@ use Any::Moose 'Util::TypeConstraints';
 
 =head2 C<unit>
 
+The unit in which lengths are printed.
+Valid units are C<cm> for centimeters and C<pt> for points.
+
+Defaults to C<cm>.
+
 =cut
 
 has 'unit' => (
@@ -45,6 +50,10 @@ has 'unit' => (
 );
 
 =head2 C<format>
+
+The format used to print the numbers.
+
+Defaults to C<%s>.
 
 =cut
 
@@ -56,6 +65,10 @@ has 'format' => (
 
 =head2 C<scale>
 
+The scale of the drawing.
+
+Defaults to C<1>.
+
 =cut
 
 has 'scale' => (
@@ -66,6 +79,10 @@ has 'scale' => (
 
 =head2 C<width>
 
+The width of the drawing area.
+
+Defaults to C<undef> for none.
+
 =cut
 
 has 'width' => (
@@ -75,6 +92,10 @@ has 'width' => (
 
 =head2 C<height>
 
+The height of the drawing area.
+
+Defaults to C<undef> for none.
+
 =cut
 
 has 'height' => (
@@ -83,6 +104,11 @@ has 'height' => (
 );
 
 =head2 C<origin>
+
+A point coerced into a L<LaTeX::TikZ::Point> object that represents the logical origin of the printed area.
+If L</width> and L</height> are set, the canvas will be equivalent to a rectangle whose lower left corner at C<-$origin> and of given width and length.
+
+Defaults to C<(0, 0)>, meaning that the drawing area goes from C<(0, 0)> to C<($width, $height)>.
 
 =cut
 
@@ -95,6 +121,8 @@ has 'origin' => (
 =head1 METHODS
 
 =head2 C<id>
+
+An unique identifier of the formatter object.
 
 =cut
 
@@ -114,7 +142,52 @@ sub id {
  } map($tikz->$_, qw/unit format scale width height/), $origin;
 }
 
-=head2 C<render>
+=head2 C<render @sets>
+
+Processes all the L<LaTeX::TikZ::Set> objects given in C<@sets> to produce the actual TikZ code to insert in the LaTeX file.
+First, all the mods applied to the sets and their subsets are collected, and a declaration is emitted if needed for each of them by calling L<LaTeX::TikZ::Mod/declare>.
+Then, the image code is generated for each set.
+
+This method returns a list of array references :
+
+=over 4
+
+=item *
+
+The first one contains the header lines to include between the C<\documentclass> and the C<\begin{document}>.
+
+=item *
+
+The second one contains the mod declaration lines to put inside the document, between C<\begin{document}> and C<\end{document}>.
+
+=item *
+
+Finally, there's one array reference for each given TikZ set, which contain the lines for the actual TikZ pictures.
+
+=back
+
+The lines returned by L</render> don't end with a line feed.
+
+    my ($header, $declarations, $set1_body, $set2_body) = $formatter->render($set1, $set2);
+
+    open my $tex, '>', 'test.tex' or die "open('>test.tex'): $!";
+
+    print $tex "$_\n" for (
+     "\\documentclass[12pt]{article}",
+     @$header,
+     "\\begin{document}",
+      "\\pagestyle{empty}",
+      @$declarations,
+      "First set :"
+      "\\begin{center}",
+       @$set1_body,
+      "\\end{center}",
+      "Second set :"
+      "\\begin{center}",
+       @$set2_body,
+      "\\end{center}",
+     "\\end{document}",
+    );
 
 =cut
 
@@ -225,7 +298,9 @@ sub render {
  return \@header, \@decls, @bodies;
 }
 
-=head2 C<len>
+=head2 C<len $len>
+
+Format the given length according to the formatter options.
 
 =cut
 
@@ -237,7 +312,9 @@ sub len {
  sprintf $tikz->format . $tikz->unit, $len * $tikz->scale;
 }
 
-=head2 C<angle>
+=head2 C<angle $theta>
+
+Format the given angle (in radians) according to the formatter options.
 
 =cut
 
@@ -251,7 +328,9 @@ sub angle {
  sprintf $tikz->format, POSIX::ceil($a);
 }
 
-=head2 C<label>
+=head2 C<label $name, $pos>
+
+Returns the TikZ code for a point labeled C<$name> at position C<$pos> according to the formatter options.
 
 =cut
 
@@ -264,6 +343,8 @@ sub label {
 }
 
 =head2 C<thickness>
+
+Format the given line thickness according to the formatter options.
 
 =cut
 

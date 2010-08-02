@@ -44,10 +44,10 @@ my $lines = eval {
 is $@, '', 'creating a line pattern doesn\'t croak';
 
 check $lines, 'a line pattern', <<'DECL', <<'BODY';
-\pgfdeclarepatternformonly{pata}{\pgfqpoint{-0.2pt}{-0.2pt}}{\pgfqpoint{0.3pt}{0.3pt}}{\pgfqpoint{0.2pt}{0.2pt}}{
+\pgfdeclarepatternformonly{pata}{\pgfqpoint{-0.2pt}{-0.2pt}}{\pgfqpoint{1.8pt}{1.8pt}}{\pgfqpoint{1.6pt}{1.6pt}}{
 \pgfsetlinewidth{0.2pt}
-\pgfpathmoveto{\pgfqpoint{-0.2pt}{0.1pt}}
-\pgfpathlineto{\pgfqpoint{0.3pt}{0.1pt}}
+\pgfpathmoveto{\pgfqpoint{-0.2pt}{0.8pt}}
+\pgfpathlineto{\pgfqpoint{1.8pt}{0.8pt}}
 \pgfusepath{stroke}
 }
 DECL
@@ -61,8 +61,8 @@ my $dots = eval {
 is $@, '', 'creating a dot pattern doesn\'t croak';
 
 check $dots, 'a dot pattern', <<'DECL', <<'BODY';
-\pgfdeclarepatternformonly{patb}{\pgfqpoint{-0.2pt}{-0.2pt}}{\pgfqpoint{0.3pt}{0.3pt}}{\pgfqpoint{0.2pt}{0.2pt}}{
-\pgfpathcircle{\pgfqpoint{0.1pt}{0.1pt}}{0.2pt}
+\pgfdeclarepatternformonly{patb}{\pgfqpoint{-0.2pt}{-0.2pt}}{\pgfqpoint{1.8pt}{1.8pt}}{\pgfqpoint{1.6pt}{1.6pt}}{
+\pgfpathcircle{\pgfqpoint{0.8pt}{0.8pt}}{0.2pt}
 \pgfusepath{fill}
 }
 DECL
@@ -81,10 +81,10 @@ my $seq = eval {
 is $@, '', 'creating a sequence with two identic patterns doesn\'t croak';
 
 check $seq, 'a sequence with two identic patterns', <<'DECL', <<'BODY';
-\pgfdeclarepatternformonly{pata}{\pgfqpoint{-0.2pt}{-0.2pt}}{\pgfqpoint{0.3pt}{0.3pt}}{\pgfqpoint{0.2pt}{0.2pt}}{
+\pgfdeclarepatternformonly{pata}{\pgfqpoint{-0.2pt}{-0.2pt}}{\pgfqpoint{1.8pt}{1.8pt}}{\pgfqpoint{1.6pt}{1.6pt}}{
 \pgfsetlinewidth{0.2pt}
-\pgfpathmoveto{\pgfqpoint{-0.2pt}{0.1pt}}
-\pgfpathlineto{\pgfqpoint{0.3pt}{0.1pt}}
+\pgfpathmoveto{\pgfqpoint{-0.2pt}{0.8pt}}
+\pgfpathlineto{\pgfqpoint{1.8pt}{0.8pt}}
 \pgfusepath{stroke}
 }
 DECL
@@ -101,16 +101,16 @@ is $@, '',
          'creating a sequence with two orthogonal line patterns doesn\'t croak';
 
 check $seq, 'a sequence with two orthogonal line patterns', <<'DECL', <<'BODY';
-\pgfdeclarepatternformonly{patc}{\pgfqpoint{-0.2pt}{-0.2pt}}{\pgfqpoint{0.3pt}{0.3pt}}{\pgfqpoint{0.2pt}{0.2pt}}{
+\pgfdeclarepatternformonly{patc}{\pgfqpoint{-0.2pt}{-0.2pt}}{\pgfqpoint{1.8pt}{1.8pt}}{\pgfqpoint{1.6pt}{1.6pt}}{
 \pgfsetlinewidth{0.2pt}
-\pgfpathmoveto{\pgfqpoint{0.1pt}{-0.2pt}}
-\pgfpathlineto{\pgfqpoint{0.1pt}{0.3pt}}
+\pgfpathmoveto{\pgfqpoint{0.8pt}{-0.2pt}}
+\pgfpathlineto{\pgfqpoint{0.8pt}{1.8pt}}
 \pgfusepath{stroke}
 }
-\pgfdeclarepatternformonly{pata}{\pgfqpoint{-0.2pt}{-0.2pt}}{\pgfqpoint{0.3pt}{0.3pt}}{\pgfqpoint{0.2pt}{0.2pt}}{
+\pgfdeclarepatternformonly{pata}{\pgfqpoint{-0.2pt}{-0.2pt}}{\pgfqpoint{1.8pt}{1.8pt}}{\pgfqpoint{1.6pt}{1.6pt}}{
 \pgfsetlinewidth{0.2pt}
-\pgfpathmoveto{\pgfqpoint{-0.2pt}{0.1pt}}
-\pgfpathlineto{\pgfqpoint{0.3pt}{0.1pt}}
+\pgfpathmoveto{\pgfqpoint{-0.2pt}{0.8pt}}
+\pgfpathlineto{\pgfqpoint{1.8pt}{0.8pt}}
 \pgfusepath{stroke}
 }
 DECL
@@ -126,14 +126,14 @@ $seq = eval {
 is $@, '', 'creating a sequence with two different patterns doesn\'t croak';
 
 check $seq, 'a sequence with two different patterns', <<'DECL', <<'BODY';
-\pgfdeclarepatternformonly{patb}{\pgfqpoint{-0.2pt}{-0.2pt}}{\pgfqpoint{0.3pt}{0.3pt}}{\pgfqpoint{0.2pt}{0.2pt}}{
-\pgfpathcircle{\pgfqpoint{0.1pt}{0.1pt}}{0.2pt}
+\pgfdeclarepatternformonly{patb}{\pgfqpoint{-0.2pt}{-0.2pt}}{\pgfqpoint{1.8pt}{1.8pt}}{\pgfqpoint{1.6pt}{1.6pt}}{
+\pgfpathcircle{\pgfqpoint{0.8pt}{0.8pt}}{0.2pt}
 \pgfusepath{fill}
 }
-\pgfdeclarepatternformonly{pata}{\pgfqpoint{-0.2pt}{-0.2pt}}{\pgfqpoint{0.3pt}{0.3pt}}{\pgfqpoint{0.2pt}{0.2pt}}{
+\pgfdeclarepatternformonly{pata}{\pgfqpoint{-0.2pt}{-0.2pt}}{\pgfqpoint{1.8pt}{1.8pt}}{\pgfqpoint{1.6pt}{1.6pt}}{
 \pgfsetlinewidth{0.2pt}
-\pgfpathmoveto{\pgfqpoint{-0.2pt}{0.1pt}}
-\pgfpathlineto{\pgfqpoint{0.3pt}{0.1pt}}
+\pgfpathmoveto{\pgfqpoint{-0.2pt}{0.8pt}}
+\pgfpathlineto{\pgfqpoint{1.8pt}{0.8pt}}
 \pgfusepath{stroke}
 }
 DECL

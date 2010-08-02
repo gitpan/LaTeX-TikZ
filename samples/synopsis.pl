@@ -9,7 +9,7 @@ use LaTeX::TikZ;
 
 # A couple of lines
 my $hline = Tikz->line(-1 => 1);
-my $vline = Tikz->line([ 0, -1 ] => [ 0, -1 ]);
+my $vline = Tikz->line([ 0, -1 ] => [ 0, 1 ]);
 
 # Paint them in red
 $_->mod(Tikz->color('red')) for $hline, $vline;
@@ -27,7 +27,7 @@ $octo->clip(Tikz->rectangle(-0.5*(1+i), 2*(1+i)));
 $octo->mod(Tikz->pattern(class => 'Dots'));
 
 # Create a formatter object
-my $tikz = Tikz->formatter;
+my $tikz = Tikz->formatter(scale => 5);
 
 # Put those objects all together and print them
 my $seq = Tikz->seq($octo, $hline, $vline);

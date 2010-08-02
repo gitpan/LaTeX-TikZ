@@ -1,4 +1,4 @@
-#!perl
+#!perl -T
 
 use strict;
 use warnings;
@@ -90,7 +90,7 @@ RES
 
 my $strip = eval {
  Tikz->functor(
-  'LaTeX::TikZ::Mod' => sub { return },
+  '+LaTeX::TikZ::Mod' => sub { return },
  );
 };
 is $@, '', 'creating a stripper doesn\'t croak';

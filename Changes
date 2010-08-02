@@ -1,5 +1,24 @@
 Revision history for LaTeX-TikZ
 
+0.02    2010-08-02 13:00 UTC
+        + Add : The functor rules now default to be appended to the list of
+                existent rules ; except if there's already a rule of the same
+                name, in which case it is always replaced.
+                If you want to replace all the subclass/subroles, prepend the
+                target name by '+'.
+        + Chg : INCOMPATIBLE CHANGE : LT::Mod->cover was renamed to
+                LT::Mod->covers.
+        + Chg : The default space width for Dots and Lines patterns has been
+                bumped to 10.
+        + Chg : perl 5.8 is required.
+        + Doc : Completed documentation of LT::Formatter, LT::Functor and
+                LT::Meta::TC::Autocoerce.
+        + Doc : Many typos were fixed.
+        + Fix : Some raw and pattern mods could be wrongly optimized away.
+        + Fix : Warnings with Moose 1.09.
+        + Tst : Test autocoercion in t/02-autocoerce.t.
+        + Tst : More user tests.
+
 0.01    2010-07-03 11:40 UTC
         First version, released on an unsuspecting world.
 

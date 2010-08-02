@@ -6,6 +6,7 @@ README
 lib/LaTeX/TikZ.pm
 lib/LaTeX/TikZ/Formatter.pm
 lib/LaTeX/TikZ/Functor.pm
+lib/LaTeX/TikZ/Functor/Rule.pm
 lib/LaTeX/TikZ/Interface.pm
 lib/LaTeX/TikZ/Meta/TypeConstraint/Autocoerce.pm
 lib/LaTeX/TikZ/Mod.pm
@@ -39,6 +40,7 @@ lib/LaTeX/TikZ/Tools.pm
 samples/synopsis.pl
 t/00-load.t
 t/01-api.t
+t/02-autocoerce.t
 t/10-set.t
 t/11-point.t
 t/12-geo.t
@@ -48,3 +50,7 @@ t/22-clip.t
 t/23-pattern.t
 t/30-functor.t
 t/91-pod.t
+t/92-pod-coverage.t
+t/95-portability-files.t
+t/99-kwalitee.t
+t/lib/LaTeX/TikZ/TestX/FromTestY.pm

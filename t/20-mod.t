@@ -281,7 +281,7 @@ check $seq, 'mod covering 4', <<'RES';
 \end{scope}
 \draw qux ;
 \end{scope}
-\draw [raw3] baz ;
+\draw [raw2,raw3] baz ;
 \end{scope}
 RES
 
@@ -299,7 +299,7 @@ check $seq, 'mod covering 5', <<'RES';
 \end{scope}
 \draw qux ;
 \end{scope}
-\draw [raw3] baz ;
+\draw [raw2,raw3] baz ;
 \end{scope}
 RES
 

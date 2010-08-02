@@ -9,11 +9,11 @@ LaTeX::TikZ::Set - Base role for LaTeX::TikZ set objects.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Scope::Guard ();
 
@@ -49,7 +49,9 @@ This method is required by the interface :
 
 =item *
 
-C<draw>
+C<draw $formatter>
+
+Returns an array reference of TikZ code lines required to effectively draw the current set object, formatted by the L<LaTeX::TikZ::Formatter> object C<$formatter>.
 
 =back
 
@@ -109,7 +111,7 @@ MOD:
    my $tag = $mod->tag;
    my $old = $mods{$tag} || [];
    for (@$old) {
-    next MOD if $_->[0]->cover($mod);
+    next MOD if $_->[0]->covers($mod);
    }
    push @{$mods{$tag}}, [ $mod, $last_mod++, $is_layer ];
    push @mods,          $mod;

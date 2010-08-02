@@ -2,14 +2,14 @@ NAME
     LaTeX::TikZ - Perl object model for generating PGF/TikZ code.
 
 VERSION
-    Version 0.01
+    Version 0.02
 
 SYNOPSIS
         use LaTeX::TikZ;
 
         # A couple of lines
         my $hline = Tikz->line(-1 => 1);
-        my $vline = Tikz->line([ 0, -1 ] => [ 0, -1 ]);
+        my $vline = Tikz->line([ 0, -1 ] => [ 0, 1 ]);
 
         # Paint them in red
         $_->mod(Tikz->color('red')) for $hline, $vline;
@@ -27,7 +27,7 @@ SYNOPSIS
         $octo->mod(Tikz->pattern(class => 'Dots'));
 
         # Create a formatter object
-        my $tikz = Tikz->formatter;
+        my $tikz = Tikz->formatter(scale => 5);
 
         # Put those objects all together and print them
         my $seq = Tikz->seq($octo, $hline, $vline);
@@ -35,14 +35,14 @@ SYNOPSIS
         print "$_\n" for map @$_, $head, $decl, $body;
 
 DESCRIPTION
-    This module provides an object model for TikZ, a graphical tookit for
+    This module provides an object model for TikZ, a graphical toolkit for
     LaTeX. It allows you to build structures representing geometrical
     figures, apply a wide set of modifiers on them, transform them globally
     with functors, and print them in the context of an existing TeX
     document.
 
 CONCEPTS
-    Traditionnaly, in TikZ, there are two ways of grouping elements, or
+    Traditionally, in TikZ, there are two ways of grouping elements, or
     *ops*, together :
 
     *   either as a *sequence*, where each element is drawn in its own line
@@ -55,8 +55,8 @@ CONCEPTS
 
             \draw (0cm,0cm) -- (0cm,1cm) (0cm,0cm) -- (1cm,0cm) ;
 
-    This distinction is important because there are some primitves that only
-    apply to paths but not to sequences, and vice versa.
+    This distinction is important because there are some primitives that
+    only apply to paths but not to sequences, and vice versa.
 
     Figures are made of ops, path or sequence *sets* assembled together in a
     tree.
@@ -119,7 +119,7 @@ INTERFACE
 
     You can define automatic coercions from your user point types to
     LaTeX::TikZ::Point by writing your own
-    LaTeX::TikZ::Point::My::User::Point class. See
+    "LaTeX::TikZ::Point::My::User::Point" class. See
     LaTeX::TikZ::Meta::TypeConstraint::Autocoerce for the rationale and
     LaTeX::TikZ::Point::Math::Complex for an example.
 
@@ -143,7 +143,7 @@ INTERFACE
 
    "Tikz->closed_polyline(@points)"
     Creates a LaTeX::TikZ::Set::Polyline object that cycles through
-    successive eleemnts of @points.
+    successive elements of @points.
 
         my $diamond = Tikz->closed_polyline(
          Tikz->point(0, 1),
@@ -275,8 +275,9 @@ INTERFACE
    "Tikz->functor(@rules)"
     Creates a LaTeX::TikZ::Functor anonymous subroutine that can be called
     against LaTeX::TikZ::Set trees to clone them according to the given
-    rules. @rules should be made of array references whose first element is
-    the class/role to match against and the second the handler to run.
+    rules. @rules should be a list of array references whose first element
+    is the class/role to match against and the second the handler to
+    execute.
 
         # The default is a clone method
         my $clone = Tikz->functor;
@@ -301,7 +302,7 @@ INTERFACE
 
         # A mod stripper
         my $strip = Tikz->functor(
-         'LaTeX::TikZ::Mod' => sub { return },
+         '+LaTeX::TikZ::Mod' => sub { return },
         );
         my $naked = $set->$strip;
 

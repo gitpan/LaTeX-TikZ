@@ -9,11 +9,11 @@ LaTeX::TikZ::Mod - Base role for LaTeX::TikZ modifiers.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 DESCRIPTION
 
@@ -34,17 +34,27 @@ These methods are required by the interface :
 
 C<tag>
 
-=item *
-
-C<cover>
-
-=item *
-
-C<declare>
+Returns an identifier for the mod object.
+It is used to gather mods together when calling C<covers> on them.
 
 =item *
 
-C<apply>
+C<covers $mod>
+
+Returns true if and only if the effects of the mod C<$mod> are already ensured by the current mod object, in which case no actual TikZ code will be emitted for C<$mod>.
+Both mod objects are guaranteed to have the same C<tag>.
+
+=item *
+
+C<declare $formatter>
+
+Returns an array reference of TikZ code lines required to declare this mod before using it, formatted by the L<LaTeX::TikZ::Formatter> object C<$formatter> ; or C<undef> if no declarations are needed for this mod.
+
+=item *
+
+C<apply $formatter>
+
+Returns the TikZ code that activates the current mod as a string formatted by the L<LaTeX::TikZ::Formatter> object C<$formatter>.
 
 =back
 
@@ -52,7 +62,7 @@ C<apply>
 
 requires qw(
  tag
- cover
+ covers
  declare
  apply
 );

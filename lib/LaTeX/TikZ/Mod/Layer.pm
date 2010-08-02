@@ -9,11 +9,11 @@ LaTeX::TikZ::Mod::Layer - A modifier that specifies a drawing layer.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Scalar::Util ();
 use List::Util   ();
@@ -27,7 +27,7 @@ use Any::Moose 'Util::TypeConstraints';
 
 =head1 RELATIONSHIPS
 
-This class consumes the L<LaTeX::TikZ::Mod> role, and as such implements the L</tag>, L</cover>, L</declare> and L</apply> methods.
+This class consumes the L<LaTeX::TikZ::Mod> role, and as such implements the L</tag>, L</covers>, L</declare> and L</apply> methods.
 
 =cut
 
@@ -139,11 +139,11 @@ sub tag {
  ref($self) . '/' . $self->name;
 }
 
-=head2 C<cover>
+=head2 C<covers>
 
 =cut
 
-sub cover { $_[0]->name eq $_[1]->name }
+sub covers { $_[0]->name eq $_[1]->name }
 
 =head2 C<score>
 

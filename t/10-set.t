@@ -106,12 +106,10 @@ sub failed_valid {
  qr/Validation failed for '\Q$tc\E'/;
 }
 
-my $err_path = qr/does not pass the type constraint because: Validation failed for 'Maybe\[ArrayRef\[LaTeX::TikZ::Set::Path::Elements\]\]/;
-
 eval {
  Tikz->path($foo, $seq2);
 };
-like $@, failed_valid('Maybe[ArrayRef[LaTeX::TikZ::Set::Path::Elements]]'),
+like $@, failed_valid('Maybe[ArrayRef[LaTeX::TikZ::Set::Op]]'),
          'creating a path that contains a sequence croaks';
 
 my $path = eval {
@@ -136,5 +134,5 @@ RES
 eval {
  $path->add($seq2);
 };
-like $@, failed_valid('LaTeX::TikZ::Set::Path::Elements'),
+like $@, failed_valid('LaTeX::TikZ::Set::Op'),
          'adding a sequence to a path croaks';

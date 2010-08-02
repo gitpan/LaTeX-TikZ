@@ -9,11 +9,11 @@ LaTeX::TikZ::Set::Op - A role for set objects that can be part of a path.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 DESCRIPTION
 
@@ -41,7 +41,9 @@ This method is required by the interface :
 
 =item *
 
-C<path>
+C<path $formatter>
+
+Returns the TikZ code that builds a path out of the current set object as a string formatted by the L<LaTeX::TikZ::Formatter> object C<$formatter>.
 
 =back
 

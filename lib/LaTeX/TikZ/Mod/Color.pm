@@ -9,11 +9,11 @@ LaTeX::TikZ::Mod::Color - A modifier that sets the line color.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use LaTeX::TikZ::Interface;
 
@@ -21,7 +21,7 @@ use Any::Moose;
 
 =head1 RELATIONSHIPS
 
-This class consumes the L<LaTeX::TikZ::Mod> role, and as such implements the L</tag>, L</cover>, L</declare> and L</apply> methods.
+This class consumes the L<LaTeX::TikZ::Mod> role, and as such implements the L</tag>, L</covers>, L</declare> and L</apply> methods.
 
 =cut
 
@@ -47,11 +47,11 @@ has 'color' => (
 
 sub tag { ref $_[0] }
 
-=head2 C<cover>
+=head2 C<covers>
 
 =cut
 
-sub cover { $_[0]->color eq $_[1]->color }
+sub covers { $_[0]->color eq $_[1]->color }
 
 =head2 C<declare>
 

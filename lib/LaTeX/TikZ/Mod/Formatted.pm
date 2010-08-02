@@ -9,14 +9,17 @@ LaTeX::TikZ::Mod::Formatted - Intermediate object between a modifier object and 
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Any::Moose;
-use Any::Moose 'Util::TypeConstraints';
+use Any::Moose 'Util::TypeConstraints' => [
+ 'enum',
+ qw(coerce from via),
+];
 
 =head1 ATTRIBUTES
 
